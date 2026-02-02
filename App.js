@@ -1,11 +1,15 @@
+// App.js
 import React from "react";
-import RootStack from "./src/navigation/RootStack";
 import { NavigationContainer } from "@react-navigation/native";
+import RootStack from "./src/navigation/RootStack";
 
-export default function App() {
+// Root component
+function App() {
   return (
     <NavigationContainer>
       <RootStack />
     </NavigationContainer>
   );
 }
+
+export default App;

@@ -12,10 +12,10 @@ export default function AppHeader({ navigation }) {
         justifyContent: "space-between",
       }}
     >
-      {/* <Image
+      <Image
         source={require("../../assets/images/icon.png")}
         style={{ width: 120, height: 30, resizeMode: "contain" }}
-      /> */}
+      />
 
       <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
         <Ionicons name="notifications-outline" size={24} />

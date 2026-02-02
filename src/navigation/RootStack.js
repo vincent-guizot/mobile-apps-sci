@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabs from "./BottomTabs";
-// import NotificationScreen from "../screens/NotificationScreen";
+import NotificationScreen from "../screens/Notification/NotificationScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,11 +12,11 @@ export default function RootStack() {
         component={BottomTabs}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Notifications"
         component={NotificationScreen}
         options={{ title: "Notifications" }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }
