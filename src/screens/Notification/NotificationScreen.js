@@ -1,43 +1,31 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
-
-const notifications = [
-  { id: "1", title: "New Coaching Request", read: false },
-  { id: "2", title: "Event Approved", read: true },
-  { id: "3", title: "New Article Published", read: false },
-];
+import React from "react";
+import { Box, Text, VStack, Button } from "native-base";
+import { useSelector, useDispatch } from "react-redux";
+import { markAsRead } from "../../store/slices/notificationSlice";
 
 export default function NotificationScreen() {
+  const dispatch = useDispatch();
+  const notifs = useSelector((state) => state.notif.list);
+
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={notifications}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View
-            style={[
-              styles.card,
-              { backgroundColor: item.read ? "#eee" : "#fff" },
-            ]}
-          >
-            <Text style={{ fontWeight: item.read ? "normal" : "bold" }}>
-              {item.title}
-            </Text>
-          </View>
-        )}
-      />
-    </View>
+    <VStack space={4} p={4}>
+      {notifs.map((n) => (
+        <Box
+          key={n.id}
+          bg={n.read ? "gray.100" : "white"}
+          p={4}
+          borderRadius={8}
+          shadow={1}
+        >
+          <Text fontWeight="bold">{n.title}</Text>
+          <Text>{n.message}</Text>
+          {!n.read && (
+            <Button mt={2} size="sm" onPress={() => dispatch(markAsRead(n.id))}>
+              Mark as Read
+            </Button>
+          )}
+        </Box>
+      ))}
+    </VStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: "#f9f9f9" },
-  card: {
-    padding: 16,
-    borderRadius: 10,
-    marginBottom: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-});

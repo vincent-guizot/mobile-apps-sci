@@ -1,15 +1,18 @@
-// App.js
 import React from "react";
+import { NativeBaseProvider } from "native-base";
+import { Provider } from "react-redux";
+import { store } from "./src/store";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStack from "./src/navigation/RootStack";
 
-// Root component
-function App() {
+export default function App() {
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <RootStack />
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </Provider>
   );
 }
-
-export default App;
